@@ -1,14 +1,39 @@
 <!DOCTYPE html>
-<html>
+<html lang="de">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="refresh" content="5; url=https://www.ziel-url.com">
+    <title>Weiterleitung...</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            padding: 50px;
+        }
+        .message {
+            font-size: 1.5em;
+            color: #333;
+        }
+        .redirect-text {
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="message">
+        <h1>Du wirst gleich weitergeleitet...</h1>
+        <p class="redirect-text">Falls du nicht automatisch weitergeleitet wirst, klicke bitte auf den folgenden Link:</p>
+        <a href="https://www.ziel-url.com" class="redirect-link">Zur Ziel-URL</a>
+    </div>
+
     <script type="text/javascript">
         setTimeout(function(){
             window.location.href = "https://www.ziel-url.com";
         }, 5000); // 5000 ms = 5 Sekunden
     </script>
-</head>
-<body>
-    <p>Du wirst in wenigen Sekunden weitergeleitet...</p>
 </body>
 </html>
