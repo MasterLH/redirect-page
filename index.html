@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="refresh" content="5; url=https://www.ziel-url.com">
+    <meta http-equiv="refresh" content="5; url=" id="redirectMeta">
     <title>Weiterleitung...</title>
     <style>
         body {
@@ -27,12 +27,37 @@
     <div class="message">
         <h1>Du wirst gleich weitergeleitet...</h1>
         <p class="redirect-text">Falls du nicht automatisch weitergeleitet wirst, klicke bitte auf den folgenden Link:</p>
-        <a href="https://www.ziel-url.com" class="redirect-link">Zur Ziel-URL</a>
+        <a id="redirectLink" href="#" class="redirect-link">Zur Ziel-URL</a>
     </div>
 
     <script type="text/javascript">
-        setTimeout(function(){
-            window.location.href = "https://www.ziel-url.com";
+        // Funktion zum Extrahieren des Parameters aus der URL
+        function getUrlParameter(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+
+        // Den Parameter 'url' aus der URL auslesen
+        const targetUrl = getUrlParameter('url');
+
+        if (targetUrl) {
+            // Wenn der Parameter vorhanden ist, die Weiterleitung auf diese URL setzen
+            const redirectUrl = decodeURIComponent(targetUrl); // URL dekodieren
+            document.getElementById('redirectMeta').setAttribute('content', '5; url=' + redirectUrl);
+            document.getElementById('redirectLink').setAttribute('href', redirectUrl);
+        } else {
+            // Wenn kein Parameter übergeben wird, eine Standard-Weiterleitung verwenden
+            document.getElementById('redirectMeta').setAttribute('content', '5; url=https://www.standard-url.com');
+            document.getElementById('redirectLink').setAttribute('href', 'https://www.standard-url.com');
+        }
+
+        // Setzt die automatische Weiterleitung
+        setTimeout(function() {
+            if (targetUrl) {
+                window.location.href = targetUrl;
+            } else {
+                window.location.href = 'https://www.standard-url.com';
+            }
         }, 5000); // 5000 ms = 5 Sekunden
     </script>
 </body>
