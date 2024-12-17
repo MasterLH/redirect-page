@@ -41,12 +41,12 @@
         const targetUrl = getUrlParameter('url');
 
         if (targetUrl) {
-            // Wenn der Parameter vorhanden ist, die Weiterleitung auf diese URL setzen
-            let redirectUrl = targetUrl.trim(); // Parameter URL trimmen, um unnötige Leerzeichen zu entfernen
-            
-            // Wenn die URL nicht mit http:// oder https:// beginnt, fügen wir http:// hinzu
-            if (!/^https?:\/\//i.test(redirectUrl)) {
-                redirectUrl = 'http://' + redirectUrl; // Standardmäßig http:// verwenden
+            // Entferne Leerzeichen und überprüfe, ob die URL mit https:// beginnt
+            let redirectUrl = targetUrl.trim();
+
+            // Wenn die URL nicht mit https:// beginnt, fügen wir https:// hinzu
+            if (!/^https:\/\//i.test(redirectUrl)) {
+                redirectUrl = 'https://' + redirectUrl; // Immer https:// verwenden
             }
 
             // Update des Meta-Tags und des Links
