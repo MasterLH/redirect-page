@@ -42,13 +42,21 @@
 
         if (targetUrl) {
             // Wenn der Parameter vorhanden ist, die Weiterleitung auf diese URL setzen
-            const redirectUrl = decodeURIComponent(targetUrl); // URL dekodieren
+            let redirectUrl = targetUrl.trim(); // Parameter URL trimmen, um unnötige Leerzeichen zu entfernen
+            
+            // Wenn die URL nicht mit http:// oder https:// beginnt, fügen wir http:// hinzu
+            if (!/^https?:\/\//i.test(redirectUrl)) {
+                redirectUrl = 'http://' + redirectUrl; // Standardmäßig http:// verwenden
+            }
+
+            // Update des Meta-Tags und des Links
             document.getElementById('redirectMeta').setAttribute('content', '5; url=' + redirectUrl);
             document.getElementById('redirectLink').setAttribute('href', redirectUrl);
         } else {
             // Wenn kein Parameter übergeben wird, eine Standard-Weiterleitung verwenden
-            document.getElementById('redirectMeta').setAttribute('content', '5; url=https://www.standard-url.com');
-            document.getElementById('redirectLink').setAttribute('href', 'https://www.standard-url.com');
+            const defaultUrl = 'https://www.standard-url.com';
+            document.getElementById('redirectMeta').setAttribute('content', '5; url=' + defaultUrl);
+            document.getElementById('redirectLink').setAttribute('href', defaultUrl);
         }
 
         // Setzt die automatische Weiterleitung
